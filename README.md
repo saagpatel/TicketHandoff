@@ -81,7 +81,7 @@ While troubleshooting:
 **Install:**
 ```bash
 # Clone the repo
-git clone https://github.com/samueladad75-byte/TicketHandoff.git
+git clone https://github.com/saagpatel/TicketHandoff.git
 cd TicketHandoff
 
 # Install dependencies
@@ -328,7 +328,7 @@ TicketHandoff/
 ### General Debugging
 - Check **Activity Log** in History page for detailed error messages
 - Enable debug logging: `RUST_LOG=debug npm run tauri dev`
-- Report issues: https://github.com/samueladad75-byte/TicketHandoff/issues
+- Report issues: https://github.com/saagpatel/TicketHandoff/issues
 
 ---
 
@@ -446,8 +446,8 @@ Built with:
 
 ## Support
 
-- **Issues:** https://github.com/samueladad75-byte/TicketHandoff/issues
-- **Discussions:** https://github.com/samueladad75-byte/TicketHandoff/discussions
+- **Issues:** https://github.com/saagpatel/TicketHandoff/issues
+- **Discussions:** https://github.com/saagpatel/TicketHandoff/discussions
 
 ---
 
