@@ -39,3 +39,4 @@ src-tauri/target
 
 # Codex local audit workspace
 .codex_audit/
+.perf-results/
