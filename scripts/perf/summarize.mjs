@@ -4,10 +4,21 @@ const files = {
   bundle: ".perf-results/bundle.json",
   build: ".perf-results/build-time.json",
   memory: ".perf-results/memory.json",
+  assets: ".perf-results/assets.json",
   api: ".perf-results/api-summary.json",
 };
 
-const summary = { capturedAt: new Date().toISOString(), metrics: {}, status: "pass" };
+const summary = {
+  capturedAt: new Date().toISOString(),
+  metrics: {},
+  status: "pass",
+};
+const requiredMetrics = new Set(
+  (process.env.PERF_REQUIRED_METRICS || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean),
+);
 for (const [key, file] of Object.entries(files)) {
   if (existsSync(file)) {
     summary.metrics[key] = JSON.parse(readFileSync(file, "utf8"));
@@ -16,6 +27,24 @@ for (const [key, file] of Object.entries(files)) {
   }
 }
 
+if (process.env.PERF_ENFORCE_SUMMARY === "1") {
+  for (const key of requiredMetrics) {
+    const metric = summary.metrics[key];
+    const status = metric?.status ?? "pass";
+    if (status === "fail" || status === "not-run") {
+      summary.status = "fail";
+      break;
+    }
+  }
+}
+
 mkdirSync(".perf-results", { recursive: true });
-writeFileSync(".perf-results/summary.json", `${JSON.stringify(summary, null, 2)}\n`);
+writeFileSync(
+  ".perf-results/summary.json",
+  `${JSON.stringify(summary, null, 2)}\n`,
+);
 console.log("wrote .perf-results/summary.json");
+
+if (summary.status === "fail") {
+  process.exit(1);
+}
