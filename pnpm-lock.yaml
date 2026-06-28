@@ -42,8 +42,8 @@ importers:
         specifier: ^4.1.18
         version: 4.2.2
       use-debounce:
-        specifier: ^10.0.0
-        version: 10.1.0(react@19.2.4)
+        specifier: ^10.1.1
+        version: 10.1.1(react@19.2.4)
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.8.1
@@ -3217,8 +3217,8 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  use-debounce@10.1.0:
-    resolution: {integrity: sha512-lu87Za35V3n/MyMoEpD5zJv0k7hCn0p+V/fK2kWD+3k2u3kOCwO593UArbczg1fhfs2rqPEnHpULJ3KmGdDzvg==}
+  use-debounce@10.1.1:
+    resolution: {integrity: sha512-kvds8BHR2k28cFsxW8k3nc/tRga2rs1RHYCqmmGqb90MEeE++oALwzh2COiuBLO1/QXiOuShXoSN2ZpWnMmvuQ==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       react: '*'
@@ -6759,7 +6759,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  use-debounce@10.1.0(react@19.2.4):
+  use-debounce@10.1.1(react@19.2.4):
     dependencies:
       react: 19.2.4
 
