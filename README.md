@@ -19,26 +19,31 @@ Ticket Handoff Assistant is a privacy-first desktop app for IT support engineers
 
 ### Prerequisites
 
-- Node.js 20+
-- pnpm 9+
+- Node.js 22.14+ or 24+ (the locked `whatwg-url` dependency requires this; CI currently selects Node 20)
+- pnpm 10 (CI pins 10.28.1)
 - Rust toolchain (stable) + Tauri v2 prerequisites for macOS
-- Jira Cloud or Server instance with API token
+- Jira instance and API token only for real Jira integration; fixture tests do not need credentials
 
 ### Installation
 
 ```bash
 git clone https://github.com/saagpatel/TicketHandoff.git
 cd TicketHandoff
-pnpm install
-cp .env.example .env
-# Set JIRA_URL, JIRA_EMAIL, JIRA_API_TOKEN in .env
+pnpm install --frozen-lockfile
 ```
 
 ### Run (development)
 
 ```bash
+# Browser preview (native IPC is unavailable here)
 pnpm dev
+# Desktop development (writes application data)
+pnpm tauri dev
 ```
+
+Configure real Jira access in the desktop app Settings; `.env.example` does not
+provide Jira credential variables. Avoid real Jira requests or posting notes
+when inspecting the UI or running synthetic tests.
 
 ### Build (desktop app)
 
@@ -64,3 +69,5 @@ Ticket Handoff is a Tauri 2 desktop app. The Rust backend owns Jira API communic
 ## License
 
 MIT
+
+See [CONTRIBUTING.md](CONTRIBUTING.md#verification) for focused tests, type/build checks, native prerequisites, and the managed verification contract.
