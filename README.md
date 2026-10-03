@@ -53,14 +53,14 @@ pnpm tauri build
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Desktop shell | Tauri 2 + Rust |
-| Frontend | React + TypeScript + Vite |
-| Jira integration | Jira REST API v3 |
-| AI summaries | Ollama (local, optional) |
-| Storage | SQLite (drafts and history) |
-| Styling | Tailwind CSS |
+| Layer            | Technology                  |
+| ---------------- | --------------------------- |
+| Desktop shell    | Tauri 2 + Rust              |
+| Frontend         | React + TypeScript + Vite   |
+| Jira integration | Jira REST API v3            |
+| AI summaries     | Ollama (local, optional)    |
+| Storage          | SQLite (drafts and history) |
+| Styling          | Tailwind CSS                |
 
 ## Architecture
 
