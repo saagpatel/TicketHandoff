@@ -4,13 +4,13 @@
 
 > Turn 30-minute escalation write-ups into 3-minute handoffs — with full context, no copy-pasting, and 50% fewer follow-up questions.
 
-Ticket Handoff Assistant is a privacy-first desktop app for IT support engineers. It fetches ticket context from Jira automatically, lets you track troubleshooting steps interactively as you work, generates an AI summary of what worked and what didn't, and posts formatted escalation notes back to Jira in one click.
+Ticket Handoff Assistant is a privacy-first desktop app for IT support engineers. It fetches ticket context from Jira on request, lets you track troubleshooting steps interactively as you work, generates an AI summary of completed and unattempted steps, and posts formatted escalation notes back to Jira in one click.
 
 ## Features
 
-- **Auto Jira Fetch** — Enter a ticket ID and the app pulls summary, reporter, and current status directly from your Jira instance
+- **Jira Fetch** — Enter a ticket ID and click "Fetch from Jira" to pull summary, reporter, and current status directly from your Jira instance
 - **Interactive Troubleshooting Checklists** — Track steps in real time as you work; the checklist becomes the basis for the escalation summary
-- **AI Escalation Summaries** — Local AI generates a structured summary of actions taken, outcomes, and recommended next steps (optional, runs offline via Ollama)
+- **AI Escalation Summaries** — Ollama generates a structured summary of completed steps, steps not attempted, and recommended next steps (optional, runs offline with a local endpoint and an available model)
 - **One-Click Jira Post** — Post formatted markdown escalation notes back to the ticket without leaving the app
 - **Draft Persistence** — Save and resume mid-escalation; handoffs survive interruptions and shift changes
 - **File Attachments** — Attach screenshots or logs directly to Jira tickets from the app
@@ -19,7 +19,7 @@ Ticket Handoff Assistant is a privacy-first desktop app for IT support engineers
 
 ### Prerequisites
 
-- Node.js 22.14+ or 24+ (the locked `whatwg-url` dependency requires this; CI currently selects Node 20)
+- Node.js 22.22.2+ within 22.x, 24.15+ within 24.x, or 26+ (the locked `jsdom` dependency requires this; CI currently selects Node 20)
 - pnpm 10 (CI pins 10.28.1)
 - Rust toolchain (stable) + Tauri v2 prerequisites for macOS
 - Jira instance and API token only for real Jira integration; fixture tests do not need credentials
@@ -64,7 +64,7 @@ pnpm tauri build
 
 ## Architecture
 
-Ticket Handoff is a Tauri 2 desktop app. The Rust backend owns Jira API communication (signing requests with the stored API token), draft persistence to SQLite, and Ollama integration for summary generation. The React frontend renders the ticket context, checklist, and generated notes in a focused single-screen layout designed to sit alongside whatever support tool the engineer is already using. Keyboard shortcuts are documented in `KEYBOARD_SHORTCUTS.md` for fast escalation workflows.
+Ticket Handoff is a Tauri 2 desktop app. The Rust backend owns Jira API communication (authenticating requests with Basic authentication using the email and API token stored in macOS Keychain), draft persistence to SQLite, and Ollama integration for summary generation. The React frontend has Home, New Escalation, History, and Settings routes; New Escalation renders the ticket context, checklist, and generated notes alongside the support tool the engineer is already using. Keyboard shortcuts are documented in `KEYBOARD_SHORTCUTS.md` for fast escalation workflows.
 
 ## License
 
