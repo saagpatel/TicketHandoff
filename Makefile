@@ -10,7 +10,7 @@ build:
 	pnpm build
 
 test:
-	pnpm test
+	pnpm test --run
 
 lint:
 	pnpm lint
